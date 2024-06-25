@@ -1,0 +1,26 @@
+# ワークフローの名前
+name: Go Test
+
+# ワークフローのトリガーとなる GitHub イベント名。
+on:
+  # 誰かがリポジトリのブランチにプッシュしたときにワークフローを実行し、プッシュイベントをトリガーします。
+  push:
+
+# ジョブの設定
+jobs:
+
+  # ジョブID
+  build:
+    # ジョブを実行するマシンの種類。
+    runs-on: ubuntu-latest
+    # ステップ
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Build
+        run: go build -v .
